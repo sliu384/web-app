@@ -1,0 +1,28 @@
+.my-navbar {
+  justify-content: left;
+}
+
+.landing {
+  min-height: 1000px;
+  background-color: beige;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-container1 {
+  font-size: 10vw;
+  max-width: 50vw;
+}
+
+.blurb {
+  min-height: fit-content;
+  padding: 50px;
+  background-color: blanchedalmond;
+}
+
+.tablet-types {
+  padding: 50px;
+  background-color: bisque;
+  min-height: fit-content;
+}
