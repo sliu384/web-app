@@ -3,9 +3,14 @@
   justify-content: left;
 }
 
+a {
+  text-decoration: none;
+  color: grey;
+}
+/* 
 .navbar-tablets {
   color:gray; 
-}
+} */
 
 .landing {
   min-height: 1000px;
@@ -35,5 +40,5 @@
 /* css for tablets html */
 .pen-tablets {
   background-color: tan;
-  padding: 50px; 
+  padding: 50px;
 }
