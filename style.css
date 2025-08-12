@@ -42,3 +42,7 @@ a {
   background-color: tan;
   padding: 50px;
 }
+
+.tablet-card {
+  width: 200px;
+}
