@@ -22,19 +22,13 @@ async function getAllRecords() {
 
       for (let i = 0; i < data.records.length; i++) {
         let name = data.records[i].fields["name"];
-        let brand = data.records[i].fields["brand"];
-        let price = data.records[i].fields["price"];
-        let type_of_tablet = data.records[i].fields["type of tablet"];
+        let image = data.records[i].fields["what it looks like"];
 
         newHtml += `
         <div class="tablet-card">
-          <div class="block">
-            <div class="info">
-              <h3>${name}</h3>
-              <p>Brand: ${brand}</p>
-              <p>Price: $${price}</p>
-              <p>Type: ${type_of_tablet}</p>
-            </div>
+          <div>
+            <img class="card-img-top rounded" alt="${name}" src="${image[0].url}">
+            <h3>${name}</h3>
           </div>
         </div>`;
       }
@@ -48,8 +42,6 @@ async function getAllRecords() {
     gutter: 10,
   });
 }
-
-getAllRecords();
 
 async function getOneRecord(id) {
   let jobsResultElement = document.getElementById("tablets");
