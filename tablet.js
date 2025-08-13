@@ -82,7 +82,7 @@ async function getOneRecord(id) {
             <div class="price container">${price}</div>
             <div class="type container">${type_of_tablet}</div>
             <div class="size container">${size}</div>
-            <div class="sensitivity container>${sensitivity}
+            <div class="sensitivity container>${sensitivity}</div>
             <div class = "color container">${color}</div>
             <div class="tilt container>${tilt}</div>
             <div class="link container">${link}</div>
