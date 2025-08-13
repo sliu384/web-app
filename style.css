@@ -38,6 +38,10 @@ a {
 }
 
 /* css for tablets html */
+#tablets {
+  margin: 10%;
+}
+
 .pen-tablets {
   background-color: tan;
   padding: 50px;
@@ -45,4 +49,6 @@ a {
 
 .tablet-card {
   width: 200px;
+  padding: 30px;
+  gap: 20px; 
 }
