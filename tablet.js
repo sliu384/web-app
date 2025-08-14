@@ -26,11 +26,11 @@ async function getAllRecords() {
       <div class="input-group">
         <div class="input-group-text">
           <input name = "filter" id = "all" class="form-check-input mt-0" type="radio" value="all" aria-label="Radio button for following text input" checked/>
-          <label for="all">all</label><br>
+          <label for="all">All</label>
           <input name = "filter" id="tablet-btn" class="form-check-input mt-0" type="radio" value="Pen Tablet" aria-label="Radio button for following text input">
-          <label for="tablet-btn">Pen Tablet</label><br>
+          <label for="tablet-btn">Pen Tablet</label>
           <input name = "filter" id="monitor-btn" class="form-check-input mt-0" type="radio" value="Pen Display" aria-label="Radio button for following text input">
-          <label for="monitor-btn">Pen Display</label><br>
+          <label for="monitor-btn">Pen Display</label>
         </div>
       </div>
       </form>
@@ -38,18 +38,13 @@ async function getAllRecords() {
 
       resultsElement.innerHTML = buttonsHTML;
 
-      //add button handlers
       const radioButtons = document.querySelectorAll('input[name="filter"]');
 
       for (const radioButton of radioButtons) {
         radioButton.addEventListener("change", function () {
-          // Your handler function logic here
-
-          // 'this' inside this function refers to the changed radio button
           if (this.checked) {
             console.log(`Selected value: ${this.value}`);
             filterRecords(this.value);
-            // Perform actions based on the selected radio button
           }
         });
       }
@@ -134,7 +129,7 @@ async function getOneRecord(id) {
         <h3>${name}</h3>
         <h5 class="brand container">${brand}</h5>
         <p class="price container">$${price}</p>
-        <p class="type container">${type_of_tablet}</p>
+        <p class="type container">Type of tablet: ${type_of_tablet}</p>
         <p class="size container">Dimensions: ${size}</p>
         <p class="sensitivity container">${sensitivity}</p>
         <p class = "color container">Color gamut (standard): ${color}</p>
