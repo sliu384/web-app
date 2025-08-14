@@ -40,7 +40,8 @@ a {
 
 /* css for tablets html */
 #tablets {
-  margin: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .pen-tablets {
@@ -52,6 +53,12 @@ a {
   width: calc((100% - 2 * var(--gutter)) / 3);
   padding: 30px;
   gap: 20px;
+  opacity: 0;
+  animation: fadeIn linear forwards;
+  animation-timeline: view(
+    block
+  ); /* Animates based on element's visibility in the viewport */
+  animation-range: entry 0% cover 50%; /* Adjust these values to control when the animation starts and ends */
 }
 
 .masonry {
@@ -78,4 +85,23 @@ a {
 .logo {
   max-width: 100%;
   height: auto;
+}
+
+.my-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 3rem;
+}
+
+.input-group {
+  justify-content: space-around;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,7 +1,8 @@
 "use strict";
 
 async function getAllRecords() {
-  let getResultElement = document.getElementById("tablets");
+  const tabletsElement = document.getElementById("tablets");
+  const resultsElement = document.getElementById("results");
 
   const options = {
     method: "GET",
@@ -16,27 +17,78 @@ async function getAllRecords() {
   )
     .then((response) => response.json())
     .then((data) => {
-      getResultElement.innerHTML = "";
+      let records = data.records;
+      resultsElement.innerHTML = "";
 
-      let newHtml = "";
+      let buttonsHTML = `
+      <section class="my-buttons">
+      <form>
+      <div class="input-group">
+        <div class="input-group-text">
+          <input name = "filter" id = "all" class="form-check-input mt-0" type="radio" value="all" aria-label="Radio button for following text input" checked/>
+          <label for="all">all</label><br>
+          <input name = "filter" id="tablet-btn" class="form-check-input mt-0" type="radio" value="Pen Tablet" aria-label="Radio button for following text input">
+          <label for="tablet-btn">Pen Tablet</label><br>
+          <input name = "filter" id="monitor-btn" class="form-check-input mt-0" type="radio" value="Pen Display" aria-label="Radio button for following text input">
+          <label for="monitor-btn">Pen Display</label><br>
+        </div>
+      </div>
+      </form>
+      </section>`;
 
-      for (let i = 0; i < data.records.length; i++) {
-        let name = data.records[i].fields["name"];
-        let image = data.records[i].fields["what it looks like"];
+      resultsElement.innerHTML = buttonsHTML;
 
-        newHtml += `
+      //add button handlers
+      const radioButtons = document.querySelectorAll('input[name="filter"]');
+
+      for (const radioButton of radioButtons) {
+        radioButton.addEventListener("change", function () {
+          // Your handler function logic here
+
+          // 'this' inside this function refers to the changed radio button
+          if (this.checked) {
+            console.log(`Selected value: ${this.value}`);
+            filterRecords(this.value);
+            // Perform actions based on the selected radio button
+          }
+        });
+      }
+
+      function filterRecords(type) {
+        let filteredRecords = records;
+        if (type === "all") {
+          renderItems(filteredRecords);
+          return;
+        }
+        filteredRecords = records.filter((record) => {
+          return record.fields["type of tablet"] === type;
+        });
+        renderItems(filteredRecords);
+      }
+    });
+}
+
+function renderItems(records) {
+  const tabletsElement = document.getElementById("tablets");
+  let newHtml = "";
+
+  for (let i = 0; i < records.length; i++) {
+    let name = records[i].fields["name"];
+    let image = records[i].fields["what it looks like"];
+
+    newHtml += `
         <div class="tablet-card">
           <div>
-            <a href="tablets.html?id=${data.records[i].id}">
+            <a href="tablets.html?id=${records[i].id}">
             <img class="card-img-top rounded" alt="${name}" src="${image[0].url}">
             <h3>${name}</h3>
           </div>
         </div>`;
-      }
+  }
 
-      getResultElement.innerHTML = newHtml;
-    });
-  new Masonry(document.getElementById("tablets"), {
+  tabletsElement.innerHTML = newHtml;
+
+  new Masonry(tabletsElement, {
     itemSelector: ".tablet-card",
     columnWidth: ".tablet-card",
     percentPosition: true,
@@ -72,27 +124,6 @@ async function getOneRecord(id) {
       let tilt = data.fields["tilt support"];
       let link = data.fields["link to item"];
       let image = data.fields["what it looks like"];
-
-      /* 
-        <div>
-          <h3 class="row>${name}</h3>
-          <div class="row">
-            <div class="col-md-4">
-              <img class="card-img-top rounded logo" alt="${name}" src="${image[0].url}">
-            </div>
-            <div class="col-md-6">
-              <div class="brand container">${brand}</div>
-              <div class="price container">${price}</div>
-              <div class="type container">${type_of_tablet}</div>
-              <div class="size container">${size}</div>
-              <div class="sensitivity container>${sensitivity}</div>
-              <div class = "color container">${color}</div>
-              <div class="tilt container>${tilt}</div>
-              <div class="link container">${link}</div>
-            </div>
-          </div>
-        </div>
-      */
 
       let newHtml = `
         <div class="row">
