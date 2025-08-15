@@ -60,6 +60,8 @@ async function getAllRecords() {
         });
         renderItems(filteredRecords);
       }
+
+      filterRecords("all");
     });
 }
 
@@ -72,7 +74,7 @@ function renderItems(records) {
     let image = records[i].fields["what it looks like"];
 
     newHtml += `
-        <div class="tablet-card">
+        <div class="tablet-card card rounded">
           <div>
             <a href="tablets.html?id=${records[i].id}">
             <img class="card-img-top rounded" alt="${name}" src="${image[0].url}">
@@ -92,7 +94,7 @@ function renderItems(records) {
 }
 
 async function getOneRecord(id) {
-  let jobsResultElement = document.getElementById("tablets");
+  let jobsResultElement = document.getElementById("detailed-view");
 
   const options = {
     method: "GET",
@@ -121,11 +123,12 @@ async function getOneRecord(id) {
       let image = data.fields["what it looks like"];
 
       let newHtml = `
-        <div class="row">
+        <div class="container detailed">
+        <div class="row justify-content-around">
         <div class="col-md-4">
         <img class="card-img-top rounded logo" alt="${name}" src="${image[0].url}">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4 px-6">
         <h3>${name}</h3>
         <h5 class="brand container">${brand}</h5>
         <p class="price container">$${price}</p>
@@ -134,7 +137,8 @@ async function getOneRecord(id) {
         <p class="sensitivity container">${sensitivity}</p>
         <p class = "color container">Color gamut (standard): ${color}</p>
         <p class="tilt container">Support Tilt? ${tilt}</p>
-        <a class="link container" target="_blank" href="${link}">Link to Official Website</a>
+        <a class="link container" target="_blank" href="${link}">Click Here to Buy</a>
+        </div>
         </div>
         </div>
       `;

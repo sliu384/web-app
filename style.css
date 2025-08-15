@@ -1,20 +1,57 @@
-/* css for index html*/
-.my-navbar {
-  justify-content: left;
-}
-
 a {
   text-decoration: none;
-  color: grey;
+  position: relative;
+  color: black;
 }
-/* 
-.navbar-tablets {
-  color:gray; 
-} */
 
+/* navbar styling */
+.my-navbar {
+  justify-content: left;
+  cursor: pointer;
+  width: 40%;
+  background: transparent !important;
+}
+
+.my-navbar a {
+  text-decoration: none;
+  position: relative;
+  color: #7a6263;
+}
+
+.my-navbar a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -2px;
+  background-color: currentColor;
+  transition: width 0.3s;
+}
+
+.my-navbar a:hover::after {
+  width: 100%;
+}
+
+.m-0 {
+  width: 100%;
+}
+
+body.home-page .my-navbar {
+  background-color: #dff2d8 !important;
+}
+
+body.tablet-page .my-navbar {
+  background-color: #ced097 !important;
+}
+
+body.tablet-page {
+  background-color: #ced097;
+}
+/* css for index html*/
 .landing {
-  min-height: 1000px;
-  background-color: beige;
+  min-height: 100vh;
+  background-color: #dff2d8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +65,7 @@ a {
 .blurb {
   min-height: fit-content;
   padding: 50px;
-  background-color: blanchedalmond;
+  background-color: #c6dea6;
 }
 
 .tablet-blurb {
@@ -52,9 +89,8 @@ a {
 .tablet-card {
   width: calc((100% - 2 * var(--gutter)) / 3);
   padding: 30px;
-  gap: 20px;
+  row-gap: 20px;
   overflow: hidden;
-  transition: all 0.4s ease;
   cursor: pointer;
 }
 
@@ -91,6 +127,10 @@ a {
   justify-content: space-around;
 }
 
+.input-group-text label {
+  cursor: pointer;
+}
+
 .input-group {
   background: none;
   outline: none;
@@ -120,4 +160,8 @@ input[name="filter"] {
 
 .input-group-text label:active {
   background: #ddd;
+}
+
+.detailed {
+  margin: 10vh;
 }
