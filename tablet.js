@@ -74,7 +74,7 @@ function renderItems(records) {
     let image = records[i].fields["what it looks like"];
 
     newHtml += `
-        <div class="tablet-card card rounded">
+        <div class="tablet-card card rounded-lg">
           <div>
             <a href="tablets.html?id=${records[i].id}">
             <img class="card-img-top rounded" alt="${name}" src="${image[0].url}">
@@ -89,7 +89,7 @@ function renderItems(records) {
     itemSelector: ".tablet-card",
     columnWidth: ".tablet-card",
     percentPosition: true,
-    gutter: 10,
+    gutter: 15,
   });
 }
 
